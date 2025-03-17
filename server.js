@@ -4,6 +4,8 @@ const express = require('express');
 
 const mongoose = require('mongoose');
 const morgan = require('morgan');
+const cors = require('cors');
+
 mongoose.connect(process.env.MONGODB_URI);
 
 mongoose.connection.on('connected', () => {
@@ -11,6 +13,7 @@ mongoose.connection.on('connected', () => {
 });
 const app = express();
 
+app.use(cors());
 app.use(express.json());
 app.use(morgan('dev'));
 
